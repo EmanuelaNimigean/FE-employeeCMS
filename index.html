@@ -1,60 +1,69 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employees ~ CMS</title>
-    <link rel="stylesheet" href="css\index.css">
-    <script src = "js\index.js" type = "module"></script>
+    <link rel="stylesheet" href="css\index.css" />
+    <script src="js\index.js" type="module"></script>
 </head>
 
 <body id="body">
-        <div>
-            <h1>Employees ~ Content Management System</h1>
+    <div class="parent">
+
+        <div class="title">
+            Employees ~ Content Management System
         </div>
 
-        <div id="searchBar">
-            <form id="form">
-                <button type="button"><img id="searchImage" src="images\srch.png"/></button>
-                <input type="search" id="searchQuery" name="sQ" placeholder="Search...">
-            </form>
+        <div class="container">
+            <div class="searchBar">
+                <div class="searchItems1">
+                    <button type="button">
+                        <img id="searchImage" src="images\searchIcon.png" />
+                    </button>
+                </div>
+                <div class="searchItems2">
+                    <input type="search" id="searchBarr" name="sQ" placeholder="Search..." />
+                </div>
+            </div>
+
+            <div class="employeesTableContainer">
+            <div class="employeesTableClass">
+                <table id="employeesTable">
+                    <thead>
+                        <tr>
+                            <th id="pictureCol">Picture ▼▲</th>
+                            <th id="firstNameCol" class="col-2">
+                                First name ▼▲
+                            </th>
+                            <th id="lastNameCol" class="col-2">
+                                Last name ▼▲
+                            </th>
+                            <th id="emailCol" class="col-2">
+                                Email ▼▲
+                            </th>
+                            <th id="sexCol" class="col-2">
+                                Sex ▼▲
+                            </th>
+                            <th id="birthDateCol" class="col-2">
+                                Birthdate ▼▲
+                            </th>
+                            <th id="actionCol" class="col-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="mt-4">
-            <table id="employeesTable" class="col-11 p-0 m-auto">
-              <thead>
-                <tr>
-                  <th id="pictureCol">Picture</th>
-                  <th id="firstNameCol" class="col-2">
-                    First name
-                  </th>
-                  <th id="lastNameCol" class="col-2">
-                    Last name
-                  </th>
-                  <th id="emailCol" class="col-2">
-                    Email
-                  </th>
-                  <th id="sexCol" class="col-2">
-                    Sex
-                  </th>
-                  <th id="birthDateCol" class="col-2">
-                    Birthdate
-                  </th>
-                  <th id="actionCol" class="col-2">
-                    
-                  </th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
+            <div class="addEmployeeButton">
+                <button type="buttonAdd" class="addBtn" onClick="">
+                    Add new employee
+                </button>
+            </div>
         </div>
-
-        <div id="addEmployeeButton">
-            <button type="button" class="addBtn" onClick="">
-              Add new employee
-            </button>
-        </div>
+    </div>
 </body>
 
 </html>

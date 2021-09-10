@@ -1,0 +1,97 @@
+body{
+    background-color: rgba(188, 143, 143, 0.411);
+}
+
+.parent {
+    background-size: cover;
+    background-color: rgba(188, 143, 143, 0.199);
+  }
+
+.title{
+    text-align: center;
+    font-family: Great Vibes;
+    font-size: 60px;
+    font-style: oblique;
+    font-weight: bold;
+    color: rgb(118, 38, 104);
+    text-shadow: 2px 2px white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.container{
+    padding: 5rem;
+    text-align: center;
+}
+
+
+.employeesTableClass{
+    padding: 5px 45px;
+    border-radius: 35px;
+    box-shadow: inset 5px 5px 8px 7px white;
+    width:fit-content;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+th{
+    padding: 5px 23px;
+    text-align: center;
+    color: rgb(118, 38, 104);
+    font-size: 23px;
+    font-weight: bold;
+    text-shadow: 1px 1px white;
+}
+
+th:hover{
+    background-color: rgba(188, 143, 143, 0.418);
+}
+
+button{
+    border-radius: 30px;
+    border-color: rgb(190, 110, 110);
+    font-size: 18px;
+    color:rgb(156, 77, 77);
+    padding: 5px;
+}
+
+button:hover{
+    background-color: rgba(188, 143, 143, 0.418);
+    transform: scale(1.3,1.2);
+}
+
+#searchImage {
+    width: 20px;
+    height: 18px;
+}
+
+#searchBarr{
+    background-color: rgba(188, 143, 143, 0.486);
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+}
+
+.searchItems2{
+    padding-bottom: 25px;
+    padding-left: 5px;
+    float:left;
+    color: aqua;
+}
+
+.searchItems1{
+    float:left;
+    padding-left: 40px;
+}
+
+.employeesTableContainer{
+    padding-top: 50px;
+}
+
+.addEmployeeButton{
+    padding-top: 50px;
+    size: 80px;
+}
+
