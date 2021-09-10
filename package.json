@@ -2,21 +2,21 @@
   "name": "nodejs-hello-world",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.html"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EmanuelaNimigean/nodeJS-app.git"
+    "url": "git+https://github.com/EmanuelaNimigean/FE-employeeCMS"
   },
   "author": "EmanuelaN",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EmanuelaNimigean/nodeJS-app/issues"
+    "url": "https://github.com/EmanuelaNimigean/FE-employeeCMS/issues"
   },
-  "homepage": "https://github.com/EmanuelaNimigean/nodeJS-app#readme",
+  "homepage": "https://github.com/EmanuelaNimigean/FE-employeeCMS#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
