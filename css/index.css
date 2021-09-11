@@ -1,8 +1,10 @@
-body{
+html, body{
     background-color: rgba(188, 143, 143, 0.411);
     background: rgba(188, 143, 143, 0.411);
+    margin: 0;
+    padding:0;
+    height: 100%;
 }
-html {background-color: rgba(188, 143, 143, 0.411);}
 .parent {
     background-size: cover;
     background-color: rgba(188, 143, 143, 0.329);
@@ -129,8 +131,8 @@ button:hover{
     font-weight: bold;
     color: rgb(118, 38, 104);
     text-shadow: 1px 2px white;
-    padding-top: 3px;
-    padding-bottom: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .modal{
@@ -143,6 +145,6 @@ button:hover{
     font-weight: bold;
     color: rgba(118, 38, 103, 0.788);
     text-shadow: 1px 1px white;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }

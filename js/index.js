@@ -145,3 +145,8 @@ function validate(firstName, lastName, email, sex, birthdate) {
 
   return true;
 }
+var maxBirthdate=moment().subtract(16*12, 'M').format('YYYY-MM-DD');
+document.getElementById("birthdate-input").max = maxBirthdate;
+
+
+
