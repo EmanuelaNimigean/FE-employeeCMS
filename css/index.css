@@ -1,10 +1,12 @@
 body{
     background-color: rgba(188, 143, 143, 0.411);
+    background: rgba(188, 143, 143, 0.411);
 }
-
+html {background-color: rgba(188, 143, 143, 0.411);}
 .parent {
     background-size: cover;
     background-color: rgba(188, 143, 143, 0.329);
+    margin: 0auto;
   }
 
 .title{
@@ -14,7 +16,7 @@ body{
     font-style: oblique;
     font-weight: bold;
     color: rgb(118, 38, 104);
-    text-shadow: 2px 3px white;
+    text-shadow: 2px 4px white;
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -23,7 +25,6 @@ body{
     padding: 5rem;
     text-align: center;
 }
-
 
 .employeesTableClass{
     padding: 5px 45px;
@@ -35,18 +36,24 @@ body{
     margin-right: auto;
 }
 
-
 th{
     padding: 10px;
     text-align: center;
-    color: rgb(118, 38, 104);
+    color: rgb(97, 31, 85);
     font-size: 23px;
     font-weight: bold;
-    text-shadow: 1px 1px white;
+    text-shadow: 1px 2px white;
 }
 
 th:hover{
     background-color: rgba(188, 143, 143, 0.418);
+}
+
+td{
+    padding: 10px;
+    text-align: center;
+    color: rgb(80, 26, 70);
+    font-size: 17px;
 }
 
 .col-2{
@@ -64,6 +71,22 @@ button{
 button:hover{
     background-color: rgba(188, 143, 143, 0.418);
     transform: scale(1.3,1.2);
+}
+
+.addBtn{
+    border-radius: 30px;
+    border-color: rgb(190, 110, 110);
+    font-size: 18px;
+    color:rgb(156, 77, 77);
+    padding: 5px;
+}
+
+.searchBtn{
+    border-radius: 30px;
+    border-color: rgb(190, 110, 110);
+    font-size: 18px;
+    color:rgb(156, 77, 77);
+    padding: 5px;
 }
 
 #searchImage {
@@ -86,7 +109,7 @@ button:hover{
 
 .searchItems1{
     float:left;
-    padding-left: 30px;
+    padding-left: 20px;
     border-radius: 15px;
 }
 

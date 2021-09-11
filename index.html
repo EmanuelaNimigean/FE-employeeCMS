@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employees ~ CMS</title>
     <link rel="stylesheet" href="css\index.css" />
-    <script src="js\index.js" type="module"></script>
+    <script src="\js\index.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
@@ -22,7 +22,7 @@
         <div class="container">
             <div class="searchBar">
                 <div class="searchItems1">
-                    <button type="button">
+                    <button type="button" class="searchBtn">
                         <img id="searchImage" src="images\searchIcon.png" />
                     </button>
                 </div>
@@ -109,7 +109,9 @@
                     
                             <div class="mb-3">
                                 <label for="picture" class="form-label">Enter photo</label>
-                                <input class="form-control" type="file" id="picture" onchange="showMyImage(this)" accept="images/*">
+                                <input class="form-control" type="file" id="picture"  accept="images/*">
+                                <br>
+                                <img id="defaultImg" src="/images/defaultImg.png" height=120>
                             </div>
                         </form>
                     </div>
