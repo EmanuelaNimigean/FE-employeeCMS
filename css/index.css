@@ -4,7 +4,7 @@ body{
 
 .parent {
     background-size: cover;
-    background-color: rgba(188, 143, 143, 0.199);
+    background-color: rgba(188, 143, 143, 0.329);
   }
 
 .title{
@@ -14,7 +14,7 @@ body{
     font-style: oblique;
     font-weight: bold;
     color: rgb(118, 38, 104);
-    text-shadow: 2px 2px white;
+    text-shadow: 2px 3px white;
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -37,7 +37,7 @@ body{
 
 
 th{
-    padding: 5px 23px;
+    padding: 10px;
     text-align: center;
     color: rgb(118, 38, 104);
     font-size: 23px;
@@ -47,6 +47,10 @@ th{
 
 th:hover{
     background-color: rgba(188, 143, 143, 0.418);
+}
+
+.col-2{
+    text-align: center;
 }
 
 button{
@@ -78,12 +82,12 @@ button:hover{
     padding-bottom: 25px;
     padding-left: 5px;
     float:left;
-    color: aqua;
 }
 
 .searchItems1{
     float:left;
-    padding-left: 40px;
+    padding-left: 30px;
+    border-radius: 15px;
 }
 
 .employeesTableContainer{
@@ -95,3 +99,27 @@ button:hover{
     size: 80px;
 }
 
+.modal-title{
+    text-align: center;
+    font-family: Great Vibes;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(118, 38, 104);
+    text-shadow: 1px 2px white;
+    padding-top: 3px;
+    padding-bottom: 2px;
+}
+
+.modal{
+    text-align: left;
+}
+
+.modal-body{
+    font-family: Great Vibes;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(118, 38, 103, 0.788);
+    text-shadow: 1px 1px white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
