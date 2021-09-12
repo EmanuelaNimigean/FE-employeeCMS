@@ -64,7 +64,7 @@ function appendTable(employee) {
   <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
   </tr>`
   //console.log(employee);
-  document.getElementById("employeesTableBody").innerHTML = "";
+  
   document.getElementById("employeesTable").innerHTML += tableContent;
   // employeesTable.reload();
 }
@@ -79,7 +79,8 @@ async function getAllFromDB() {
 getAllFromDB();
 
 function putData(querySnapshot) {
-  //removeDataFromViewTable(employeesTable);
+  document.getElementById("employeesTableBody").innerHTML = "";
+  removeDataFromViewTable(employeesTable);
   querySnapshot.forEach((doc) => {
     var newEmployee = new Employee(doc.data()["employeeId"], doc.data()["firstName"], doc.data()["lastName"], doc.data()["email"], doc.data()["sex"], doc.data()["birthdate"], doc.data()["picture"]);
     appendTable(newEmployee);
@@ -216,3 +217,11 @@ async function sortTable() {
     }
    
 }
+
+document.getElementById("searchImage").addEventListener("click", async function() {
+  var searchString = document.getElementById("searchBarr").value;
+  removeDataFromViewTable(employeesTable);
+  const q = query(collection(db, "employeesCMS"), where("firstName", "==", searchString));
+  const querySnapshot = await getDocs(q);
+  putData(querySnapshot);
+});
