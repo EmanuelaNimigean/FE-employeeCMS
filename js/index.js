@@ -89,7 +89,7 @@ function putData(querySnapshot) {
 
 function removeDataFromViewTable(employeesTable) {
   for (var i = employeesTable.childNodes[1].childElementCount - 1; i > 0; i--) {
-    console.log(i);
+    console.log("fsdgfxcg");
     employeesTable.deleteRow(i);
   }
 }
