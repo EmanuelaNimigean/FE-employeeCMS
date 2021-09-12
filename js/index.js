@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, where, orderBy } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js";
+import {
+  getFirestore,doc,setDoc,getDoc,getDocs,collection,deleteDoc, query,where,orderBy,
+} from "https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDjHqXO7ylD7g16JeOfxqS3_ngKUM6qRjA",
@@ -8,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "firstprojectfirebase-nmg98.appspot.com",
   messagingSenderId: "580650108239",
   appId: "1:580650108239:web:6e61aa9b6862e05cf6f13a",
-  measurementId: "G-C5F6Z9LCEN"
+  measurementId: "G-C5F6Z9LCEN",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -17,40 +19,44 @@ const db = getFirestore(app);
 var employeesTable = document.getElementById("employeesTable");
 
 window.onload = () => {
-
-  document.getElementById("add-employee-button").addEventListener("click", addNewEmployee, true);
-  document.getElementById("modalButton").addEventListener("click", openModal, true);
-  document.querySelectorAll(".close-myModal").forEach(e => {
+  document
+    .getElementById("add-employee-button")
+    .addEventListener("click", addNewEmployee, true);
+  document
+    .getElementById("modalButton")
+    .addEventListener("click", openModal, true);
+  document.querySelectorAll(".close-myModal").forEach((e) => {
     e.addEventListener("click", closeModal, false);
   });
   document.getElementById("sortBy").addEventListener("change", sortTable, true);
-  document.getElementById("sortType").addEventListener("change", sortTable, true);
-
-}
+  document
+    .getElementById("sortType")
+    .addEventListener("change", sortTable, true);
+};
 
 function openModal() {
-  document.getElementById('myModal').style = "display:block";
-  document.getElementById('myModal').classList.add("show");
+  document.getElementById("myModal").style = "display:block";
+  document.getElementById("myModal").classList.add("show");
 }
 
 function closeModal() {
-  document.getElementById('myModal').style = "display:none";
-  document.getElementById('myModal').classList.remove("show");
+  document.getElementById("myModal").style = "display:none";
+  document.getElementById("myModal").classList.remove("show");
 }
 
 window.onclick = function (event) {
-  if (event.target == document.getElementById('myModal')) {
+  if (event.target == document.getElementById("myModal")) {
     closeModal();
   }
-}
+};
 
 function clearModal() {
-  document.getElementById("first-name").value = '';
-  document.getElementById("last-name").value = '';
-  document.getElementById("email-input").value = '';
-  document.getElementById("sex-input").value = '';
-  document.getElementById("birthdate-input").value = '';
-  document.getElementById("picture").value = '';
+  document.getElementById("first-name").value = "";
+  document.getElementById("last-name").value = "";
+  document.getElementById("email-input").value = "";
+  document.getElementById("sex-input").value = "";
+  document.getElementById("birthdate-input").value = "";
+  document.getElementById("picture").value = "";
 }
 
 function appendTable(employee) {
@@ -62,16 +68,13 @@ function appendTable(employee) {
   <td>${employee.sex}</td>
   <td>${employee.birthdate}</td>
   <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
-  </tr>`
-  //console.log(employee);
-  
-  document.getElementById("employeesTable").innerHTML += tableContent;
-  // employeesTable.reload();
+  </tr>`;
+
+  document.getElementById("employeesTableBody").innerHTML += tableContent;
 }
 
 async function getAllFromDB() {
   const querySnapshot = await getDocs(collection(db, "employeesCMS"));
-  //removeDataFromViewTable(employeesTable);
   putData(querySnapshot);
   setEventListenerDelete();
 }
@@ -79,10 +82,17 @@ async function getAllFromDB() {
 getAllFromDB();
 
 function putData(querySnapshot) {
-  document.getElementById("employeesTableBody").innerHTML = "";
   removeDataFromViewTable(employeesTable);
   querySnapshot.forEach((doc) => {
-    var newEmployee = new Employee(doc.data()["employeeId"], doc.data()["firstName"], doc.data()["lastName"], doc.data()["email"], doc.data()["sex"], doc.data()["birthdate"], doc.data()["picture"]);
+    var newEmployee = new Employee(
+      doc.data()["employeeId"],
+      doc.data()["firstName"],
+      doc.data()["lastName"],
+      doc.data()["email"],
+      doc.data()["sex"],
+      doc.data()["birthdate"],
+      doc.data()["picture"]
+    );
     appendTable(newEmployee);
   });
 }
@@ -129,9 +139,9 @@ function addNewEmployee() {
       email: email,
       sex: sex,
       birthdate: birthdate,
-      picture: picture
+      picture: picture,
     });
-    //removeDataFromViewTable(employeesTable);
+    document.getElementById("employeesTableBody").innerHTML = "";
     getAllFromDB();
     // setDelete();
     closeModal();
@@ -139,89 +149,123 @@ function addNewEmployee() {
   }
 }
 
-function Employee(employeeId, firstName, lastName, email, sex, birthdate, picture) {
+function Employee(
+  employeeId,
+  firstName,
+  lastName,
+  email,
+  sex,
+  birthdate,
+  picture
+) {
   this.employeeId = employeeId;
   this.lastName = lastName;
   this.firstName = firstName;
   this.email = email;
-  this.birthdate = moment(birthdate).format('D MMMM YYYY');
+  this.birthdate = moment(birthdate).format("D MMMM YYYY");
   this.sex = sex;
   this.picture = picture;
 }
 
 function validate(firstName, lastName, email, sex, birthdate) {
-
   if (firstName == null || firstName == "") {
-    alert('First name is required!');
+    alert("First name is required!");
     return false;
   }
 
   if (lastName == null || lastName == "") {
-    alert('Last name is required!');
+    alert("Last name is required!");
     return false;
   }
 
   if (email == null || email == "") {
-    alert('Email is required!');
+    alert("Email is required!");
     return false;
   } else {
     const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/g;
     if (!regex.test(email)) {
-      alert('Email is invalid!');
+      alert("Email is invalid!");
       return false;
     }
   }
 
   if (sex == null || sex == "") {
-    alert('Sex is required!');
+    alert("Sex is required!");
     return false;
   }
 
   if (birthdate == null || birthdate == "") {
-    alert('Birthdate is required!');
+    alert("Birthdate is required!");
     return false;
   }
 
   return true;
 }
 
-var maxBirthdate = moment().subtract(16 * 12, 'M').format('YYYY-MM-DD');
+var maxBirthdate = moment()
+  .subtract(16 * 12, "M")
+  .format("YYYY-MM-DD");
 document.getElementById("birthdate-input").max = maxBirthdate;
 
 async function sortTable() {
-    var sortBy = document.getElementById("sortBy").value;
-    var sortType = document.getElementById("sortType").value;
-    console.log(sortBy);
-    removeDataFromViewTable(employeesTable);
-    if(sortBy=="name"){
-      if(sortType=="asc"){
-        const q = query(collection(db, "employeesCMS"), orderBy("firstName", "asc"));
-        const querySnapshot = await getDocs(q);
-        putData(querySnapshot);
-      } else {
-        const q = query(collection(db, "employeesCMS"), orderBy("firstName", "desc"));
-        const querySnapshot = await getDocs(q);
-        console.log(querySnapshot);
-        putData(querySnapshot);
-      }
-    } else if(sortBy=="birthdate") {
-      if(sortType=="asc"){
-        const q = query(collection(db, "employeesCMS"), orderBy("birthdate", "asc"));
-        const querySnapshot = await getDocs(q);
-        putData(querySnapshot);
-      } else {
-        const q = query(collection(db, "employeesCMS"), orderBy("birthdate", "desc"));
-        const querySnapshot = await getDocs(q);
-        putData(querySnapshot);
-      }
+  var sortBy = document.getElementById("sortBy").value;
+  var sortType = document.getElementById("sortType").value;
+  console.log(sortBy);
+  removeDataFromViewTable(employeesTable);
+  if (sortBy == "name") {
+    if (sortType == "asc") {
+      const q = query(
+        collection(db, "employeesCMS"),
+        orderBy("firstName", "asc")
+      );
+      const querySnapshot = await getDocs(q);
+      document.getElementById("employeesTableBody").innerHTML = "";
+      putData(querySnapshot);
+    } else {
+      const q = query(
+        collection(db, "employeesCMS"),
+        orderBy("firstName", "desc")
+      );
+      const querySnapshot = await getDocs(q);
+      document.getElementById("employeesTableBody").innerHTML = "";
+      console.log(querySnapshot);
+      putData(querySnapshot);
     }
-   
+  } else if (sortBy == "birthdate") {
+    if (sortType == "asc") {
+      const q = query(
+        collection(db, "employeesCMS"),
+        orderBy("birthdate", "asc")
+      );
+      const querySnapshot = await getDocs(q);
+      document.getElementById("employeesTableBody").innerHTML = "";
+      putData(querySnapshot);
+    } else {
+      const q = query(
+        collection(db, "employeesCMS"),
+        orderBy("birthdate", "desc")
+      );
+      const querySnapshot = await getDocs(q);
+      document.getElementById("employeesTableBody").innerHTML = "";
+      putData(querySnapshot);
+    }
+  }
 }
 
-document.getElementById("searchImage").addEventListener("click", async function() {
-  var searchString = document.getElementById("searchBarr").value;
-  removeDataFromViewTable(employeesTable);
-  const q = query(collection(db, "employeesCMS"), where("firstName", "==", searchString));
-  const querySnapshot = await getDocs(q);
-  putData(querySnapshot);
-});
+document
+  .getElementById("searchImage")
+  .addEventListener("click", async function () {
+    var searchString = document.getElementById("searchBarr").value;
+    console.log(searchString);
+    if (searchString == "") {
+      getAllFromDB();
+    }
+    removeDataFromViewTable(employeesTable);
+    const q = query(
+      collection(db, "employeesCMS"),
+      where("firstName", "==", searchString)
+    );
+    const querySnapshot = await getDocs(q);
+    document.getElementById("employeesTableBody").innerHTML = "";
+    putData(querySnapshot);
+  });
