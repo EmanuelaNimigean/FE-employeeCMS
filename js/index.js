@@ -18,7 +18,7 @@ var employeesTable = document.getElementById("employeesTable");
 
 window.onload = () => {
 
-  document.getElementById("add-employee-button").addEventListener("click", addNewEmployee, false);
+  document.getElementById("add-employee-button").addEventListener("click", addNewEmployee, true);
   document.getElementById("modalButton").addEventListener("click", openModal, true);
   document.querySelectorAll(".close-myModal").forEach(e => {
     e.addEventListener("click", closeModal, false);
@@ -62,7 +62,9 @@ function appendTable(employee) {
   <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
   </tr>`
   //console.log(employee);
+  // document.getElementById("employeesTable").childNodes.remove();
   document.getElementById("employeesTable").innerHTML += tableContent;
+  // employeesTable.reload();
 }
 
 async function getAllFromDB() {
@@ -84,6 +86,7 @@ function putData(querySnapshot) {
 
 function removeDataFromViewTable(employeesTable) {
   for (var i = employeesTable.childNodes[1].childElementCount - 1; i > 0; i--) {
+    console.log(i);
     employeesTable.deleteRow(i);
   }
 }
@@ -93,7 +96,7 @@ function setEventListenerDelete() {
   for (var i = 0; i < drop.length; i++) {
     drop[i].addEventListener("click", function () {
       deleteDoc(doc(db, "employeesCMS", this.id));
-      console.log(this.parentNode.parentNode);
+      console.log(this.parentNode.parentNode.parentNode);
       this.parentNode.parentNode.remove();
     });
   }
