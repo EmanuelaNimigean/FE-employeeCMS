@@ -1,13 +1,6 @@
-// Import the functions you need from the SDKs you need
-//import { initializeApp } from "../node_modules/@firebase/app";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
-//import { getAnalytics } from "firebase/analytics";
 import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, where, orderBy } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDjHqXO7ylD7g16JeOfxqS3_ngKUM6qRjA",
   authDomain: "firstprojectfirebase-nmg98.firebaseapp.com",
@@ -18,10 +11,7 @@ const firebaseConfig = {
   measurementId: "G-C5F6Z9LCEN"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
-
 const db = getFirestore(app);
 
 var employeesTable = document.getElementById("employeesTable");
@@ -64,13 +54,13 @@ function clearModal() {
 
 function appendTable(employee) {
   var tableContent = `<tr employee-id=${employee.employeeId}>
-  <td><img src="${employee.picture}" class="picture"  height=80></td>
+  <td><img src="${employee.picture}" class="picture" height=80></td>
   <td>${employee.firstName}</td>
   <td>${employee.lastName}</td>
   <td>${employee.email}</td>
   <td>${employee.sex}</td>
   <td>${employee.birthdate}</td>
-  <td class="stergere">X</td>
+  <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
   </tr>`
   console.log(employee);
   document.getElementById("employeesTable").innerHTML += tableContent;
@@ -78,7 +68,7 @@ function appendTable(employee) {
 
 async function getAllFromDB() {
   const querySnapshot = await getDocs(collection(db, "employeesCMS"));
-  removeData(employeesTable);
+  //removeDataFromViewTable(employeesTable);
   putData(querySnapshot);
   setEventListenerDelete();
 }
@@ -86,47 +76,49 @@ async function getAllFromDB() {
 getAllFromDB();
 
 function putData(querySnapshot) {
+  //removeDataFromViewTable(employeesTable);
   querySnapshot.forEach((doc) => {
-    var newEmployee = new Employee(doc.data()["lastName"]+"row", doc.data()["firstName"], doc.data()["lastName"], doc.data()["email"], doc.data()["sex"], doc.data()["birthdate"], doc.data()["picture"]);
+    var newEmployee = new Employee(doc.data()["employeeId"], doc.data()["firstName"], doc.data()["lastName"], doc.data()["email"], doc.data()["sex"], doc.data()["birthdate"], doc.data()["picture"]);
     appendTable(newEmployee);
   });
 }
 
-function removeData(employeesTable) {
+function removeDataFromViewTable(employeesTable) {
   for (var i = employeesTable.childNodes[1].childElementCount - 1; i > 0; i--) {
     employeesTable.deleteRow(i);
   }
 }
 
 function setEventListenerDelete() {
-  var drop = document.getElementsByClassName('recycleBin');
+  var drop = document.getElementsByClassName("del");
   for (var i = 0; i < drop.length; i++) {
     drop[i].addEventListener("click", function () {
-      deleteDoc(doc(db, "employees", this.id));
-      document.getElementById(`${this.id}row`).remove();
+      deleteDoc(doc(db, "employeesCMS", this.id));
+      console.log(this.id);
+      //document.getElementById(`${this.id}`).remove();
     });
   }
 }
 
-var firstName, lastName, email, sex, birthdate, picture, validateForm, pictureName;
 function addNewEmployee() {
-  firstName = document.getElementById("first-name").value;
-  lastName = document.getElementById("last-name").value;
-  email = document.getElementById("email-input").value;
-  sex = document.getElementById("sex-input").value;
-  birthdate = document.getElementById("birthdate-input").value;
-  pictureName = document.getElementById("picture").value.split("\\")[2];
+  var employeeId=Math.random().toString(36).slice(2);
+  var firstName = document.getElementById("first-name").value;
+  var lastName = document.getElementById("last-name").value;
+  var email = document.getElementById("email-input").value;
+  var sex = document.getElementById("sex-input").value;
+  var birthdate = document.getElementById("birthdate-input").value;
+  var pictureName = document.getElementById("picture").value.split("\\")[2];
   if (pictureName == null) {
-    picture = document.getElementById("defaultImg").src;
+    var picture = document.getElementById("defaultImg").src;
   } else {
-    picture = "/images/" + pictureName;
+    var picture = "/images/" + pictureName;
   }
 
-  validateForm = validate(firstName, lastName, email, sex, birthdate);
+  var validateForm = validate(firstName, lastName, email, sex, birthdate);
 
   if (validateForm) {
-    var newEmployee = new Employee(1, firstName, lastName, email, sex, birthdate, picture);
-    setDoc(doc(db, "employeesCMS", `${lastName}`), {
+    setDoc(doc(db, "employeesCMS", `${employeeId}`), {
+      employeeId:employeeId,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -134,9 +126,9 @@ function addNewEmployee() {
       birthdate: birthdate,
       picture: picture
     });
-    removeData(employeesTable);
+    //removeDataFromViewTable(employeesTable);
     getAllFromDB();
-    //setDelete();
+    // setDelete();
     closeModal();
     clearModal();
   }
@@ -151,7 +143,6 @@ function Employee(employeeId, firstName, lastName, email, sex, birthdate, pictur
   this.sex = sex;
   this.picture = picture;
 }
-
 
 function validate(firstName, lastName, email, sex, birthdate) {
 
@@ -188,8 +179,7 @@ function validate(firstName, lastName, email, sex, birthdate) {
 
   return true;
 }
+
 var maxBirthdate = moment().subtract(16 * 12, 'M').format('YYYY-MM-DD');
 document.getElementById("birthdate-input").max = maxBirthdate;
-
-
 
