@@ -15,12 +15,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 var employeesTable = document.getElementById("employeesTable");
+
 window.onload = () => {
 
   document.getElementById("add-employee-button").addEventListener("click", addNewEmployee, false);
-
   document.getElementById("modalButton").addEventListener("click", openModal, true);
-
   document.querySelectorAll(".close-myModal").forEach(e => {
     e.addEventListener("click", closeModal, false);
   });
@@ -62,7 +61,7 @@ function appendTable(employee) {
   <td>${employee.birthdate}</td>
   <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
   </tr>`
-  console.log(employee);
+  //console.log(employee);
   document.getElementById("employeesTable").innerHTML += tableContent;
 }
 
@@ -94,8 +93,8 @@ function setEventListenerDelete() {
   for (var i = 0; i < drop.length; i++) {
     drop[i].addEventListener("click", function () {
       deleteDoc(doc(db, "employeesCMS", this.id));
-      console.log(this.id);
-      //document.getElementById(`${this.id}`).remove();
+      console.log(this.parentNode.parentNode);
+      this.parentNode.parentNode.remove();
     });
   }
 }
