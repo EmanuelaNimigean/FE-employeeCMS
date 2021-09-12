@@ -86,6 +86,15 @@ button:hover{
     padding: 5px;
 }
 
+.sortClass{
+    border-radius: 30px;
+    border-color: rgb(190, 110, 110);
+    font-size: 18px;
+    color:rgb(156, 77, 77);
+    padding: 5px;
+    margin-top: 20px;
+}
+
 #searchImage {
     width: 20px;
     height: 18px;

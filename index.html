@@ -33,29 +33,29 @@
 
             <div class="employeesTableContainer">
                 <div class="employeesTableClass">
-                    <table id="employeesTable">
+                    <table class="empTableClass" id="employeesTable">
                         <thead>
                             <tr>
-                                <th id="pictureCol">Picture▼▲</th>
+                                <th id="pictureCol">Picture</th>
                                 <th id="firstNameCol" class="col-2">
-                                    First name▼▲
+                                    First name <img id="sortImg" src="/images/sort.png" class="sortImg" height=25>
                                 </th>
                                 <th id="lastNameCol" class="col-2">
-                                    Last name▼▲
+                                    Last name <img id="sortImg" src="/images/sort.png" class="sortImg" height=25>
                                 </th>
                                 <th id="emailCol" class="col-2">
-                                    Email▼▲
+                                    Email
                                 </th>
                                 <th id="sexCol" class="col-2">
-                                    Sex▼▲
+                                    Sex
                                 </th>
                                 <th id="birthDateCol" class="col-2">
-                                    Birthdate▼▲
+                                    Birthdate
                                 </th>
                                 <th id="actionCol" class="col-2"></th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="employeesTableBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -65,6 +65,15 @@
                     Add new employee
                 </button>
             </div>
+
+            <select class="sortClass" id="sortBy">
+                <option class="sort-option" selected value="name">Name</option>
+                <option class="sort-option" value="birthdate">Birthdate</option>
+            </select>
+            <select class="sortClass" id="sortType">
+                <option class="sort-option" selected value="asc">Asc</option>
+                <option class="sort-option" value="desc">Desc</option>
+            </select>
         </div>
 
         <div class="modal fade" id="myModal">
@@ -123,6 +132,9 @@
                 </div>
             </div>
         </div>
+
+        
+
     </div>
 </body>
 

@@ -23,6 +23,8 @@ window.onload = () => {
   document.querySelectorAll(".close-myModal").forEach(e => {
     e.addEventListener("click", closeModal, false);
   });
+  document.getElementById("sortBy").addEventListener("change", sortTable, true);
+  document.getElementById("sortType").addEventListener("change", sortTable, true);
 
 }
 
@@ -62,7 +64,7 @@ function appendTable(employee) {
   <td><img src="../images/del.png" height=30 class="del" id="${employee.employeeId}"/></td>
   </tr>`
   //console.log(employee);
-  // document.getElementById("employeesTable").childNodes.remove();
+  document.getElementById("employeesTableBody").innerHTML = "";
   document.getElementById("employeesTable").innerHTML += tableContent;
   // employeesTable.reload();
 }
@@ -103,7 +105,7 @@ function setEventListenerDelete() {
 }
 
 function addNewEmployee() {
-  var employeeId=Math.random().toString(36).slice(2);
+  var employeeId = Math.random().toString(36).slice(2);
   var firstName = document.getElementById("first-name").value;
   var lastName = document.getElementById("last-name").value;
   var email = document.getElementById("email-input").value;
@@ -120,7 +122,7 @@ function addNewEmployee() {
 
   if (validateForm) {
     setDoc(doc(db, "employeesCMS", `${employeeId}`), {
-      employeeId:employeeId,
+      employeeId: employeeId,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -185,3 +187,32 @@ function validate(firstName, lastName, email, sex, birthdate) {
 var maxBirthdate = moment().subtract(16 * 12, 'M').format('YYYY-MM-DD');
 document.getElementById("birthdate-input").max = maxBirthdate;
 
+async function sortTable() {
+    var sortBy = document.getElementById("sortBy").value;
+    var sortType = document.getElementById("sortType").value;
+    console.log(sortBy);
+    removeDataFromViewTable(employeesTable);
+    if(sortBy=="name"){
+      if(sortType=="asc"){
+        const q = query(collection(db, "employeesCMS"), orderBy("firstName", "asc"));
+        const querySnapshot = await getDocs(q);
+        putData(querySnapshot);
+      } else {
+        const q = query(collection(db, "employeesCMS"), orderBy("firstName", "desc"));
+        const querySnapshot = await getDocs(q);
+        console.log(querySnapshot);
+        putData(querySnapshot);
+      }
+    } else if(sortBy=="birthdate") {
+      if(sortType=="asc"){
+        const q = query(collection(db, "employeesCMS"), orderBy("birthdate", "asc"));
+        const querySnapshot = await getDocs(q);
+        putData(querySnapshot);
+      } else {
+        const q = query(collection(db, "employeesCMS"), orderBy("birthdate", "desc"));
+        const querySnapshot = await getDocs(q);
+        putData(querySnapshot);
+      }
+    }
+   
+}
