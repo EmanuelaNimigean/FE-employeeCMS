@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css\index.css" />
     <script src="\js\index.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 </head>
 
@@ -32,8 +33,8 @@
             </div>
 
             <div class="employeesTableContainer">
-                <div class="employeesTableClass" >
-                    
+                <div class="employeesTableClass">
+
                     <table class="empTableClass" id="employeesTable">
                         <thead>
                             <tr>
@@ -42,7 +43,7 @@
                                     First name <img id="sortImg" src="/images/sort.png" class="sortImg" height=25>
                                 </th>
                                 <th id="lastNameCol" class="col-2">
-                                    Last name <img id="sortImg" src="/images/sort.png" class="sortImg" height=25>
+                                    Last name
                                 </th>
                                 <th id="emailCol" class="col-2">
                                     Email
@@ -51,14 +52,14 @@
                                     Sex
                                 </th>
                                 <th id="birthDateCol" class="col-2">
-                                    Birthdate
+                                    Birthdate <img id="sortImg" src="/images/sort.png" class="sortImg" height=25>
                                 </th>
                                 <th id="actionCol" class="col-2"></th>
                             </tr>
                         </thead>
                         <tbody id="employeesTableBody"></tbody>
                     </table>
-               
+
                 </div>
             </div>
 
@@ -69,11 +70,13 @@
             </div>
 
             <select class="sortClass" id="sortBy">
-                <option class="sort-option" selected value="name">Name</option>
+                <option class="sort-option" selected value="chooseBy">Choose sorting column</option>
+                <option class="sort-option" value="name">Name</option>
                 <option class="sort-option" value="birthdate">Birthdate</option>
             </select>
             <select class="sortClass" id="sortType">
-                <option class="sort-option" selected value="asc">Asc</option>
+                <option class="sort-option" selected value="chooseType">Choose sorting type</option>
+                <option class="sort-option" value="asc">Asc</option>
                 <option class="sort-option" value="desc">Desc</option>
             </select>
         </div>
@@ -91,19 +94,22 @@
                         <form>
                             <div class="mb-3">
                                 <label for="first-name" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="first-name" placeholder="Enter first name" required>
+                                <input type="text" class="form-control" id="first-name" placeholder="Enter first name"
+                                    required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="last-name" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="last-name" placeholder="Enter last name" required>
+                                <input type="text" class="form-control" id="last-name" placeholder="Enter last name"
+                                    required>
                             </div>
-                    
+
                             <div class="mb-3">
                                 <label for="email-input" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email-input" placeholder="Enter email" required>
+                                <input type="email" class="form-control" id="email-input" placeholder="Enter email"
+                                    required>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="sex-input" class="form-label">Sex</label>
                                 <select class="form-select" id="sex-input" required>
@@ -112,21 +118,22 @@
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
-                
+
                             <div class="mb-3">
                                 <label for="birthdate-input" class="form-label">Birthdate</label>
-                                <input type="date" class="form-control" id="birthdate-input" max="2011-11-11" placeholder="" required>
+                                <input type="date" class="form-control" id="birthdate-input" max="2011-11-11"
+                                    placeholder="" required>
                             </div>
-                    
+
                             <div class="mb-3">
                                 <img id="defaultImg" src="/images/defaultImg.png" height=35>
                                 <label for="picture" class="form-label">Picture</label>
-                                <input class="form-control" type="file" id="picture"  accept="images/*">
-                                
+                                <input class="form-control" type="file" id="picture" accept="images/*">
+
                             </div>
                         </form>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="submit" class="btn close-myModal" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn save-myModal" id="add-employee-button">Save</button>
@@ -134,9 +141,6 @@
                 </div>
             </div>
         </div>
-
-        
-
     </div>
 </body>
 

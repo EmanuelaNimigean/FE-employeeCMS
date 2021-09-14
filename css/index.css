@@ -1,9 +1,9 @@
 html,
 body {
-  background-image: linear-gradient(
-    rgba(188, 143, 143, 0.932),
-    rgba(188, 143, 143, 0.103),
-    rgb(188, 143, 143)
+  background-image: radial-gradient(closest-side,
+    rgb(188, 143, 156),
+    rgba(247, 192, 192, 0.342),
+    rgb(182, 131, 144)
   );
 }
 
@@ -128,9 +128,9 @@ button:hover {
   padding-top: 50px;
 }
 
-.employeesTableClass{
-    width:100%;
-    overflow: auto;
+.employeesTableClass {
+  width: 100%;
+  overflow: auto;
 }
 
 .addEmployeeButton {
@@ -166,16 +166,3 @@ button:hover {
 .picture {
   border-radius: 50%;
 }
-
-/* @media only screen and (max-width: 770px) {
-  .filter {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-width: 200px;
-  }
-
-  .filter .form-group {
-    margin-bottom: 5%;
-  }
-} */

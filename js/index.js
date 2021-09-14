@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
 import {
-  getFirestore,doc,setDoc,getDoc,getDocs,collection,deleteDoc, query,where,orderBy,
+  getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, query, where, orderBy,
 } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -109,7 +109,6 @@ function setEventListenerDelete() {
   for (var i = 0; i < drop.length; i++) {
     drop[i].addEventListener("click", function () {
       deleteDoc(doc(db, "employeesCMS", this.id));
-      console.log(this.parentNode.parentNode.parentNode);
       this.parentNode.parentNode.remove();
     });
   }
@@ -143,7 +142,6 @@ function addNewEmployee() {
     });
     document.getElementById("employeesTableBody").innerHTML = "";
     getAllFromDB();
-    // setDelete();
     closeModal();
     clearModal();
   }
@@ -210,7 +208,6 @@ document.getElementById("birthdate-input").max = maxBirthdate;
 async function sortTable() {
   var sortBy = document.getElementById("sortBy").value;
   var sortType = document.getElementById("sortType").value;
-  console.log(sortBy);
   removeDataFromViewTable(employeesTable);
   if (sortBy == "name") {
     if (sortType == "asc") {
@@ -221,7 +218,7 @@ async function sortTable() {
       const querySnapshot = await getDocs(q);
       document.getElementById("employeesTableBody").innerHTML = "";
       putData(querySnapshot);
-    } else {
+    } else if (sortType == "desc") {
       const q = query(
         collection(db, "employeesCMS"),
         orderBy("firstName", "desc")
@@ -240,7 +237,7 @@ async function sortTable() {
       const querySnapshot = await getDocs(q);
       document.getElementById("employeesTableBody").innerHTML = "";
       putData(querySnapshot);
-    } else {
+    } else if (sortType == "desc") {
       const q = query(
         collection(db, "employeesCMS"),
         orderBy("birthdate", "desc")
